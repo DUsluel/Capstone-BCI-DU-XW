@@ -20,7 +20,7 @@ e1 = train_data(:,1);
 fingers_nodel = [train_dg(37:end,:); train_dg((end-35):end,:)];
 %% Obtaining the moving and resting regions of the hand
 fing1 = fingers_nodel(:,1);fing2 = fingers_nodel(:,2);
-movingIndices1 = fingerMovingIndex(fing1,Fs,1,1);
-movingIndices2 = fingerMovingIndex(fing2,Fs,1,2);
+[moves1,movingIndices1] = fingerMovingIndex(fing1,Fs,1,num2str(1));
+[moves2, movingIndices2] = fingerMovingIndex(fing2,Fs,1,num2str(2));
 fing1_move = fingers_nodel(movingIndices1);
 fing1_moveAvg = mean(fing1_move,2);
