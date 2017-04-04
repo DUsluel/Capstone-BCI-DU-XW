@@ -34,14 +34,15 @@ function [Res, FRes] = FilteringT(input, time, Fs, type, fig)
     %% Filtering
     padRes = filtfilt(Filt,padIn);
     Res = padRes((length(in1)+1):(length(in1)+length(input)));%Removing padded values
-    [FRes,f] = welch(Res,512,256,Fs,[1:250]);
+    [FRes,f] = pwelch(Res,512,256,[1:250],Fs);
     %% Conditional Plotting of the result
     if (fig == 01 || fig == 11) 
         figure;plot(time,input,time,Res);xlabel('time (in seconds)');
-        title('Signal versus Time before/after filtering');
-        FSpec = linspace(0,Fs,length(time));
-        figure;plot(FSpec,abs(welc(input)),FSpec, abs(FRes));xlabel('Frequency');
-        title('Signal versus Frequency after filtering');
+        title(['Signal versus Time before/after filtering '  type]);
+        FSpec = linspace(0,Fs,length(FRes));
+        figure;plot(FSpec,abs(pwelch(input,512,256,[1:250],Fs)),FSpec, abs(FRes));xlabel('Frequency');
+        title(['Signal PSD versus Frequency after filtering ' type]);
     end
 end
+    
     
