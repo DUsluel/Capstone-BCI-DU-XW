@@ -1,4 +1,4 @@
-function [moveIndice] = fingerMovingIndex( movement,Fs,fig,fingerNo)
+function [move,moveIndice] = fingerMovingIndex( movement,Fs,fig,fingerNo)
     %fingermovingindex: Takes the signal of finger movements and returns the indexes
     %where the finger is moving
     %   The points where the finger is moving is returned as 1 and the points
@@ -18,6 +18,7 @@ function [moveIndice] = fingerMovingIndex( movement,Fs,fig,fingerNo)
     for n = 1:length(peakInd)
         peakix = peakInd(n)*Fs;
         moveIndice(:,n) = peakix-Fs*(tw/2):peakix+Fs*(tw/2);
+        move(:,n) = movement(peakix-Fs*(tw/2):peakix+Fs*(tw/2));
     end
     if fig == 1
         figure;
