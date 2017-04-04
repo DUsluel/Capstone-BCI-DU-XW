@@ -1,4 +1,4 @@
-function [moveIndice] = fingerMovingIndex( movement,Fs,fig)
+function [moveIndice] = fingerMovingIndex( movement,Fs,fig,fingerNo)
     %fingermovingindex: Takes the signal of finger movements and returns the indexes
     %where the finger is moving
     %   The points where the finger is moving is returned as 1 and the points
@@ -30,7 +30,7 @@ function [moveIndice] = fingerMovingIndex( movement,Fs,fig)
             end
             plot(t(moveIndice(:,n)),movement(moveIndice(:,n)));
             axis('auto');
-        end
+        end; suptitle(['Finger Movements for finger' fingerNo]);
     end
 end
 
