@@ -24,21 +24,3 @@ movingIndices1 = fingerMovingIndex(fing1,Fs,1);
 movingIndices2 = fingerMovingIndex(fing2,Fs,1);
 fing1_move = fingers_nodel(movingIndices1);
 fing1_moveAvg = mean(fing1_move,2);
-
-
-% %% s
-% load('sub1_comp.mat');
-% fingers_nodel = [train_dg(37:end,:); train_dg((end-35):end,:)];
-% fing1 = fingers_nodel(:,1);
-% 
-% derv = [0; abs(diff(fing1))];
-% dt = 1; %time window size in seconds
-% plot(derv); hold on;
-% 
-% movwindow = 3001;
-% pad = [zeros((movwindow-1)/2,1); derv; zeros((movwindow-1)/2,1)];
-% movAvg = zeros(size(fing1));
-% for i = 1:length(fing1)
-%     movAvg(i,1) = mean(pad(i:i+movwindow-1));
-% end
-% plot(fing1);hold on; plot(movAvg.*100);
